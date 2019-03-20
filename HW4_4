@@ -1,0 +1,108 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class hw4 extends java.awt.Frame implements ActionListener{
+
+  public static void main(String args[]){
+    new hw4();
+  }
+  
+  // 建構函式
+  public hw4() {
+    super("ActionListener Demo");
+
+    final int row = 3;    // 列
+    final int column = 2; // 行
+	
+
+    // 定義 Layout Manager 為 GridLayout
+    setLayout(new GridLayout(row, column));
+
+    java.awt.Button button;
+    
+     // 建構函式 1
+    button = new Button();
+    // 設定Button類別之文字標籤
+    button.setLabel("New");
+    add(button);
+	// 註冊 ActionListener
+	button.addActionListener(this);
+
+    button = new Button();
+    button.setLabel("Open");
+    add(button);
+	button.addActionListener(this);
+	
+    button = new Button();
+    button.setLabel("Save");
+    add(button);
+	button.addActionListener(this);
+	
+    button = new Button();
+    button.setLabel("Cut");
+    add(button);
+	button.addActionListener(this);
+	
+    button = new Button();
+    button.setLabel("Copy");
+    add(button);
+	button.addActionListener(this);
+	
+    button = new Button();
+    button.setLabel("Paste");
+    add(button);
+	button.addActionListener(this);
+
+    // 設定視窗的大小
+    this.setSize(250, 200);
+
+    // Center the frame
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension frameSize = this.getSize();
+
+    if (frameSize.height > screenSize.height)
+      frameSize.height = screenSize.height;
+
+    if (frameSize.width > screenSize.width)
+      frameSize.width = screenSize.width;
+
+    this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+
+    // 顯示視窗
+    this.setVisible(true);
+    
+    this.addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        System.exit(0);
+      }
+    });
+  }
+   //當動作發生時
+   public void actionPerformed(ActionEvent e){
+	   
+	String source=e.getActionCommand();
+	
+	switch(source){
+		case "New":
+		source = "New，開啟新檔";
+		break;
+		case "Open":
+		source = "Open， 開啟舊檔";
+		break;
+		case "Save":
+		source = "Save， 存檔";
+		break;
+		case "Cut":
+		source = "Cut， 剪下";
+		break;
+		case "Copy":
+		source = "Copy， 複製";
+		break;
+		case "Paste":
+		source = "Paste， 貼上";
+		break;
+	}
+		System.out.println(source);     
+   }
+   
+}
