@@ -1,0 +1,232 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class ID_UI  extends Frame  implements ActionListener{
+  Label label_0;
+  Label label_1;
+  Label label_2;
+  Label label_temp;
+  Label label_3;
+  Choice choice;
+  Checkbox[] checkbox = new Checkbox[2];
+  CheckboxGroup group;
+  Panel panel1;
+  Panel panel2;
+  ID_UI.MouseHandler handler1;
+  static int[] A1 = { 10, 11, 12, 13, 14, 15, 16, 17, 34, 18, 19, 21, 22, 35, 23, 24, 27, 28, 29, 32, 30, 33 };
+  static char[] A2 = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'T', 'U', 'V', 'W', 'X', 'Z' };
+  
+  public static void main(String[] paramArrayOfString)
+  {
+    new ID_UI();
+  }
+  
+  public ID_UI()
+  {
+    super("身分證字號產生器");
+    
+    GridBagLayout localGridBagLayout = new GridBagLayout();
+    GridBagConstraints localGridBagConstraints = new GridBagConstraints();
+    
+    setLayout(localGridBagLayout);
+    
+    setBackground(Color.pink);
+    
+    localGridBagConstraints.fill = 1;
+    
+    this.label_0 = new Label();
+    this.label_0.setAlignment(0);
+    this.label_0.setFont(new Font("label_0", 1, 20));
+    this.label_0.setForeground(Color.RED);
+    localGridBagConstraints.gridwidth = 0;
+    localGridBagLayout.setConstraints(this.label_0, localGridBagConstraints);
+    add(this.label_0);
+    
+    this.label_1 = new Label();
+    this.label_1.setText("地區");
+    this.label_1.setAlignment(0);
+    this.label_1.setFont(new Font("label_1", 1, 20));
+    localGridBagConstraints.gridwidth = 2;
+    localGridBagLayout.setConstraints(this.label_1, localGridBagConstraints);
+    
+    this.handler1 = new ID_UI.MouseHandler();
+    this.label_1.addMouseListener(this.handler1);
+    
+    add(this.label_1);
+    
+    this.panel1 = new Panel();
+    
+    this.choice = new Choice();
+    this.choice.add("     台北市     ");
+    this.choice.add("     台中市     ");
+    this.choice.add("     基隆市     ");
+    this.choice.add("     台南市     ");
+    this.choice.add("     高雄市     ");
+    this.choice.add("     新北市     ");
+    this.choice.add("     宜蘭縣     ");
+    this.choice.add("     桃園縣     ");
+    this.choice.add("     嘉義市     ");
+    this.choice.add("     新竹縣     ");
+    this.choice.add("     苗栗縣     ");
+    this.choice.add("     南投縣     ");
+    this.choice.add("     彰化縣     ");
+    this.choice.add("     新竹市     ");
+    this.choice.add("     雲林縣     ");
+    this.choice.add("     嘉義縣     ");
+    this.choice.add("     屏東縣     ");
+    this.choice.add("     花蓮縣     ");
+    this.choice.add("     台東縣     ");
+    this.choice.add("     金門縣     ");
+    this.choice.add("     澎湖縣     ");
+    this.choice.add("     連江縣     ");
+    this.choice.setSize(100, 120);
+    this.choice.select(0);
+    this.panel1.setSize(100, 120);
+    this.choice.addMouseListener(this.handler1);
+    this.panel1.add(this.choice);
+    localGridBagConstraints.gridwidth = 0;
+    localGridBagLayout.setConstraints(this.panel1, localGridBagConstraints);
+    
+    this.panel1.addMouseListener(this.handler1);
+    
+    add(this.panel1);
+    
+    this.label_2 = new Label();
+    this.label_2.setText("性別");
+    this.label_2.setAlignment(0);
+    this.label_2.setFont(new Font("label_2", 1, 20));
+    
+    localGridBagConstraints.gridwidth = 2;
+    localGridBagLayout.setConstraints(this.label_2, localGridBagConstraints);
+    this.label_2.addMouseListener(this.handler1);
+    add(this.label_2);
+    
+    this.label_temp = new Label();
+    this.label_temp.setText("      ");
+    localGridBagLayout.setConstraints(this.label_temp, localGridBagConstraints);
+    add(this.label_temp);
+    
+    this.panel2 = new Panel();
+    
+    this.group = new CheckboxGroup();
+    
+    this.checkbox[0] = new Checkbox();
+    this.checkbox[0].setLabel("男");
+    this.checkbox[0].setFont(new Font("checkbox0", 1, 20));
+    this.checkbox[0].setCheckboxGroup(this.group);
+    this.checkbox[0].addMouseListener(this.handler1);
+    this.panel2.add(this.checkbox[0]);
+    this.checkbox[1] = new Checkbox();
+    this.checkbox[1].setLabel("女");
+    this.checkbox[1].setFont(new Font("checkbox1", 1, 20));
+    this.checkbox[1].setCheckboxGroup(this.group);
+    this.checkbox[1].addMouseListener(this.handler1);
+    this.panel2.add(this.checkbox[1]);
+    this.group.setSelectedCheckbox(this.checkbox[0]);
+    localGridBagConstraints.gridwidth = 0;
+    localGridBagLayout.setConstraints(this.panel2, localGridBagConstraints);
+    
+    this.panel2.addMouseListener(this.handler1);
+    add(this.panel2);
+    
+    Button localButton = new Button();
+    localButton.setLabel("產生");
+    localButton.addMouseListener(this.handler1);
+    localGridBagLayout.setConstraints(localButton, localGridBagConstraints);
+    
+    localButton.addActionListener(this);
+    add(localButton);
+    
+    this.label_3 = new Label();
+    this.label_3.setAlignment(0);
+    this.label_3.setFont(new Font("label_0", 1, 24));
+    this.label_3.setForeground(Color.RED);
+    localGridBagConstraints.gridwidth = 0;
+    localGridBagLayout.setConstraints(this.label_3, localGridBagConstraints);
+    add(this.label_3);
+    
+    setSize(500, 500);
+    
+    Dimension localDimension1 = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension localDimension2 = getSize();
+    if (localDimension2.height > localDimension1.height) {
+      localDimension2.height = localDimension1.height;
+    }
+    if (localDimension2.width > localDimension1.width) {
+      localDimension2.width = localDimension1.width;
+    }
+    setLocation((localDimension1.width - localDimension2.width) / 2, (localDimension1.height - localDimension2.height) / 2);
+    
+    setVisible(true);
+    
+    addWindowListener(new WindowAdapter()
+    {
+      public void windowClosing(WindowEvent paramAnonymousWindowEvent)
+      {
+        System.exit(0);
+      }
+    });
+  }
+  
+  class MouseHandler
+    extends MouseAdapter
+  {
+    public MouseHandler() {}
+    
+    public void mouseClicked(MouseEvent paramMouseEvent) {}
+    
+    public void mouseEntered(MouseEvent paramMouseEvent)
+    {
+      Component localComponent = (Component)paramMouseEvent.getSource();
+      if ((localComponent.getName().compareTo("label0") == 0) || (localComponent.getName().compareTo("panel0") == 0) || (localComponent.getName().compareTo("choice0") == 0)) {
+        ID_UI.this.label_0.setText("請選擇地區");
+      } else if ((localComponent.getName().compareTo("label1") == 0) || (localComponent.getName().compareTo("panel1") == 0) || (localComponent.getName().compareTo("checkbox0") == 0) || (localComponent.getName().compareTo("checkbox1") == 0)) {
+        ID_UI.this.label_0.setText("請選擇性別...");
+      } else if (localComponent.getName().compareTo("button0") == 0) {
+        ID_UI.this.label_0.setText("選好後再按產生!!!");
+      }
+    }
+    
+    public void mouseExited(MouseEvent paramMouseEvent)
+    {
+      ID_UI.this.label_0.setText(" ");
+    }
+    
+    public void mousePressed(MouseEvent paramMouseEvent) {}
+    
+    public void mouseReleased(MouseEvent paramMouseEvent) {}
+  }
+  
+  public void actionPerformed(ActionEvent paramActionEvent)
+  {
+    Gen();
+  }
+  
+  public void Gen()
+  {
+    int[] arrayOfInt = new int[11];
+    
+    arrayOfInt[0] = (A1[this.choice.getSelectedIndex()] / 10);
+    arrayOfInt[1] = (A1[this.choice.getSelectedIndex()] % 10);
+    if (this.checkbox[0].getState()) {
+      arrayOfInt[2] = 1;
+    } else if (this.checkbox[1].getState()) {
+      arrayOfInt[2] = 2;
+    }
+	int i;
+    for (i = 3; i <= 10; i++) {
+      arrayOfInt[i] = ((int)(Math.random() * 10.0D));
+    }
+    i = arrayOfInt[9] * 1 + arrayOfInt[8] * 2 + arrayOfInt[7] * 3 + arrayOfInt[6] * 4 + arrayOfInt[5] * 5 + arrayOfInt[4] * 6 + arrayOfInt[3] * 7 + arrayOfInt[2] * 8 + arrayOfInt[1] * 9 + arrayOfInt[0] * 1;
+    if (i % 10 == 0) {
+      arrayOfInt[10] = 0;
+    } else {
+      arrayOfInt[10] = (10 - i % 10);
+    }
+    String str = Character.toString(A2[this.choice.getSelectedIndex()]);
+    for (int j = 2; j <= 10; j++) {
+      str = str + Integer.toString(arrayOfInt[j]);
+    }
+    this.label_3.setText(str);
+  }
+}
