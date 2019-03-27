@@ -1,0 +1,113 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class hw2 extends java.awt.Frame implements ItemListener{
+
+  public static void main(String args[]){
+    new hw2();
+  }
+  
+  // 建構函式
+  public hw2() {
+    super("List Demo");
+
+    final int row = 1;    // 列
+    final int column = 3; // 行
+
+    // 定義 Layout Manager 為 GridLayout
+    setLayout(new GridLayout(row, column));
+
+    // 建構函式 1
+    // 預設顯示項目列數為5
+    // 且不允許多重選擇項目
+    java.awt.List list = new List(5);
+    // 設定List選取項目
+    for (int i=1; i <=5; i++)    
+      list.add("List " + i);
+      
+    // 設定是否允許項目被多重選擇  
+    list.setMultipleMode(false);
+
+    // 選取選項項目
+    list.select(2);
+
+    java.awt.Panel panel1 = new Panel();
+	// 註冊 ActionListener
+	list.addItemListener(this);
+    panel1.add(list);
+    add(panel1);
+
+    // 建構函式 2
+    // 可顯示的項目列數為6
+    list = new List(6);
+    
+    // 設定List選取項目（Item）
+    for (int i=1; i <=10; i++)    
+      list.add("List " + i);
+      
+    // 設定是否允許項目被多重選擇  
+    list.setMultipleMode(true);
+
+    // 選取選項項目
+    list.select(1);
+    list.select(3);
+	list.select(5);
+
+    java.awt.Panel panel2 = new Panel();
+	// 註冊 ActionListener
+	list.addItemListener(this);
+    panel2.add(list);
+    add(panel2);
+
+
+    // 設定視窗的大小
+    this.setSize(420, 150);
+
+    // Center the frame
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension frameSize = this.getSize();
+
+    if (frameSize.height > screenSize.height)
+      frameSize.height = screenSize.height;
+
+    if (frameSize.width > screenSize.width)
+      frameSize.width = screenSize.width;
+
+    this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+
+    // 顯示視窗
+    this.setVisible(true);
+
+    this.addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        System.exit(0);
+      }
+    });
+  }
+  public void itemStateChanged(ItemEvent e) {
+		String source = null;
+
+		// 取得產生項目事件的物件
+		List ans = (List)(e.getItemSelectable());
+		if(ans.isMultipleMode()==true){
+			source = "Total Item "+ ans.getItemCount()  + " , Select Item:";
+			int[] a1 = ans.getSelectedIndexes();
+			String[] a2 = ans.getSelectedItems();
+			System.out.print(source);
+			for(int i=0;i<a1.length;i++)
+			{
+				if(i+1<a1.length)
+					System.out.print(a2[i]+",");
+				else
+					System.out.print(a2[i]);
+			}
+			System.out.println("");
+		}
+		else
+		{
+			source = "Total Item "+ ans.getItemCount()  + " , Select Item:"+ ans.getSelectedItem();
+			System.out.println(source);
+		}	
+		
+	}
+}
