@@ -1,0 +1,76 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class qz3 extends java.awt.Frame implements MouseMotionListener,ActionListener{	
+// 實作MouseMotionListener介面
+
+  public static void main(String args[]){
+    new qz3();
+  }
+  
+  // 建構函式
+  public qz3() {
+    super("qz3");
+	
+	// 註冊 MouseMotionListener
+	this.addMouseMotionListener(this);
+
+    final int row = 2,column = 1;
+    setLayout(new GridLayout(row, column));
+	
+	java.awt.Label label;
+	// 設定滑鼠指標
+    label = new Label("label");
+    label.setFont(new Font("dialog", Font.BOLD | Font.ITALIC, 20));
+    label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+	 label.setAlignment(Label.CENTER);
+	label.addMouseMotionListener(this);
+    add(label);
+	
+	java.awt.Button button;
+	 // 設定顏色
+    button = new Button("Button");
+    // 設定背景顏色
+    button.setBackground(new Color(120,50,0));
+    // 設定前景顏色
+    button.setForeground(new Color(245,185,60));
+    button.setFont(new Font("", Font.BOLD, 20));
+	button.addActionListener(this);
+    add(button);
+
+    // 設定視窗的大小
+    this.setSize(300, 200);
+
+    // Center the frame
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    Dimension frameSize = this.getSize();
+
+    if (frameSize.height > screenSize.height)
+      frameSize.height = screenSize.height;
+
+    if (frameSize.width > screenSize.width)
+      frameSize.width = screenSize.width;
+
+    this.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
+
+    // 顯示視窗
+    this.setVisible(true);
+	
+    this.addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent e) {
+        System.exit(0);
+      }
+    });
+  }
+  public void actionPerformed(ActionEvent e) {
+    			System.out.println("Button Click");
+    	  }
+  	// 實作MouseMotionListener介面之方法
+	public void mouseDragged(MouseEvent e) {
+    System.out.println("按住滑鼠並拖曳滑鼠"+e.getButton() +" X:" + e.getX() + ",  Y" + e.getY());
+  }
+	
+	public void mouseMoved(MouseEvent e) {
+    System.out.println("物件上方移動滑鼠" +" X:" + e.getX() + ",  Y" + e.getY());
+  }
+}
